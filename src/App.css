@@ -10,9 +10,25 @@ body {
   color: #364147;
   background-color: #fff;
 }
+.wrapper {
+  display: grid;
+  grid-template-columns:  5fr 2fr 1fr;
+  border: solid 1px;
+  margin-bottom: 2px;
+}
 .footer{
   text-align: center;
   color: gray;
   padding: 20px 0 20px 0;
   background-color: gainsboro;
+}
+
+.btn {
+  background-color: #444;
+  border: none; 
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 1px;
 }

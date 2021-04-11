@@ -1,17 +1,14 @@
 import React, {useState} from 'react';
 import './App.css';
+import data from './data.json'
 import Header from './components/Header';
 import ToDoList from './components/ToDoList';
 import TodoForm from './components/TodoForm';
 import Footer from './components/Footer';
 
-const App = () => {
-  const [todos, setTodos] = useState([  {id: 1, name: 'Go to the supermarket', complete: false},
-  {id: 2, name: 'Call Alice', complete: false},
-  {id: 3, name: 'Ask Alice to call Bob', complete: false},
-  {id: 4, name: 'Do the dishes', complete: false},
-  {id: 5, name: 'Change car tyres', complete: false}]);
 
+const App = () => {
+  const [todos, setTodos] = useState(data);
   const [newTodo, setNewTodo] = useState('')
 
   const addTodo =(event) => {
@@ -28,19 +25,37 @@ const App = () => {
 
   const handlenewChange = (event) => {
     console.log(event.target.value);
+    if (!event.target.value.length ){
+      return
+    } 
     setNewTodo(event.target.value)
   }
 
-  const removeTodo = (index) => {
-    const newTodo = [...todos]
-    newTodo.splice(index, 1)
-    setTodos(newTodo);
+  const removeTodo = (id) => {
+    const newTodos = [...todos]
+    newTodos.splice(id, 1);
+    setTodos(newTodos);
   }
+
+  const completetodo = id=> {
+    const newTodos = [...todos];
+    newTodos[id].complete = true;
+    setTodos(newTodos);
+  }
+  // const completetodo = id => {
+  //   const newTodos = [...todos].slice;
+  //   for (let i = 0; i < newTodos.length; i++)
+  //   if (todos[i].id=== id){
+  //     var newcomplete = !newTodos[i].complete;
+  //     newTodos[i].complete = newcomplete
+  //   }
+  //   setTodos(newTodos);
+  // }
   
   return (
     <div className ="App">
     <Header />
-    <ToDoList todos= {todos} />
+    <ToDoList todos= {todos} handledelete ={removeTodo}  completetodo={completetodo}/>
     <TodoForm 
     onSubmit = {addTodo}
     value={newTodo} 
