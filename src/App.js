@@ -1,19 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import data from './data.json'
 import Header from './components/Header';
 import ToDoList from './components/ToDoList';
 import TodoForm from './components/TodoForm';
-import Footer from './components/Footer';
-
 
 const App = () => {
   const [todos, setTodos] = useState(data);
   const [newTodo, setNewTodo] = useState('')
 
-  const addTodo =(event) => {
+  const addTodo = (event) => {
     event.preventDefault();
-
     const todoObject = {
       id: todos.length + 1,
       name: newTodo,
@@ -24,44 +22,37 @@ const App = () => {
   }
 
   const handlenewChange = (event) => {
-    console.log(event.target.value);
-    if (!event.target.value.length ){
-      return
-    } 
     setNewTodo(event.target.value)
   }
 
-  const removeTodo = (id) => {
+  const removeTodo = id => {
     const newTodos = [...todos]
-    newTodos.splice(id, 1);
+    const updatedtodo = newTodos.filter(todo => todo.id !== id);
+    setTodos(updatedtodo)
+  }
+
+
+  const completeTodo = id => {
+    const newTodos = [...todos];
+    for (let i = 0; i < newTodos.length; i++) {
+      if (newTodos[i].id === id) {
+        newTodos[i].complete = !newTodos[i].complete;
+      }
+    }
     setTodos(newTodos);
   }
 
-  const completetodo = id=> {
-    const newTodos = [...todos];
-    newTodos[id].complete = true;
-    setTodos(newTodos);
-  }
-  // const completetodo = id => {
-  //   const newTodos = [...todos].slice;
-  //   for (let i = 0; i < newTodos.length; i++)
-  //   if (todos[i].id=== id){
-  //     var newcomplete = !newTodos[i].complete;
-  //     newTodos[i].complete = newcomplete
-  //   }
-  //   setTodos(newTodos);
-  // }
-  
   return (
-    <div className ="App">
-    <Header />
-    <ToDoList todos= {todos} handledelete ={removeTodo}  completetodo={completetodo}/>
-    <TodoForm 
-    onSubmit = {addTodo}
-    value={newTodo} 
-    onChange={handlenewChange}
-    />
-    <Footer />
+    <div className="app">
+      <div className="container">
+        <Header />
+        <TodoForm
+          onSubmit={addTodo}
+          value={newTodo}
+          onChange={handlenewChange}
+        />
+        <ToDoList todos={todos} removeTodo={removeTodo} completeTodo={completeTodo} />
+      </div>
     </div>
   )
 }

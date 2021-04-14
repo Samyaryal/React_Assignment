@@ -1,14 +1,22 @@
 import React from 'react';
 import ToDo from './ToDo';
+import { Card } from 'react-bootstrap';
  
-const ToDoList = ({todos, handledelete, completetodo}) => {
+const ToDoList = ({todos, removeTodo, completeTodo}) => {
    return (
-       <div>
-           {todos.map(todo => {
-            return (
-            <ToDo key ={todo.id} todo={todo} handledelete ={handledelete} completetodo={completetodo}/>)    
-           })}
-       </div>
+    <div>
+    {todos.map((todo) => (
+      <Card>
+        <Card.Body>
+          <ToDo
+          todo={todo}
+          removeTodo={removeTodo}
+          completeTodo={completeTodo}
+          />
+        </Card.Body>
+      </Card>
+    ))}
+  </div>      
    );
 };
  
