@@ -4,8 +4,9 @@ import { Card } from 'react-bootstrap';
  
 const ToDoList = ({todos, removeTodo, completeTodo}) => {
    return (
-    <div>
-    {todos.map((todo) => (
+    <div data-testid="todos">
+    {todos.map((todo) => {
+      return (
       <Card>
         <Card.Body>
           <ToDo
@@ -15,8 +16,10 @@ const ToDoList = ({todos, removeTodo, completeTodo}) => {
           />
         </Card.Body>
       </Card>
-    ))}
-  </div>      
+  
+    )})}
+    
+    </div>
    );
 };
  

@@ -15,7 +15,7 @@ const ToDo = ({ todo, removeTodo, completeTodo }) => {
     <div className="todo" style={{ background: color }}>
       <span>{todo.name}</span>
       <div>
-        <Button variant="primary" onClick={() => completeTodo(todo.id)}>
+        <Button className= "primary" variant="primary" onClick={() => completeTodo(todo.id)}>
           {text}
         </Button>
 
