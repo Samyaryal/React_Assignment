@@ -4,7 +4,7 @@ https://todoappassignment.netlify.app/
 
 React Hooks is used to manage the state of the application.
 
-##Development Instructions: 
+## Development Instructions: 
 Firts Git clone the project:
 $ git clone https://github.com/Samyaryal/React_Assignment.git
 
@@ -17,4 +17,4 @@ $ npm start # or yarn start
 
 Application can be accesed at localhost:3000
 
-##This app is for demonstration purpose only. 
+## This app is for demonstration purpose only. 
